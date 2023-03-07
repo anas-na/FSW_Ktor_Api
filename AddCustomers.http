@@ -1,0 +1,68 @@
+POST http://127.0.0.1:8080/customers
+Content-Type: application/json
+
+{
+  "firstName": "Jane",
+  "lastName": "Smith",
+  "email": "jane.smith@company.com"
+}
+
+
+###
+POST http://127.0.0.1:8080/customers
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Smith",
+  "email": "john.smith@company.com"
+}
+
+###
+POST http://127.0.0.1:8080/customers
+Content-Type: application/json
+
+{
+  "firstName": "Mary",
+  "lastName": "Smith",
+  "email": "mary.smith@company.com"
+}
+
+###
+POST http://127.0.0.1:8080/customers
+Content-Type: application/json
+
+{
+  "firstName": "xtina",
+  "lastName": "Smith",
+  "email": "xtina.smith@company.com"
+}
+###
+POST http://127.0.0.1:8080/customers
+Content-Type: application/json
+
+{
+  "firstName": "riri",
+  "lastName": "Smith",
+  "email": "riri.smith@company.com"
+}
+
+###
+POST http://127.0.0.1:8080/customers
+Content-Type: application/json
+
+{
+  "firstName": "nikki",
+  "lastName": "Smith",
+  "email": "nikki.smith@company.com"
+}
+
+###
+POST http://127.0.0.1:8080/customers
+Content-Type: application/json
+
+{
+  "firstName": "bey",
+  "lastName": "Smith",
+  "email": "bey.smith@company.com"
+}
