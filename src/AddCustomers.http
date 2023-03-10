@@ -1,10 +1,11 @@
-POST http://127.0.0.1:8080/customers
+POST http://127.0.0.1:8080/users
 Content-Type: application/json
 
 {
   "firstName": "Jane",
   "lastName": "Smith",
-  "email": "jane.smith@company.com"
+  "email": "jane.smith@company.com",
+  
 }
 
 
