@@ -1,5 +1,6 @@
 package com.example.routes
 
+import com.example.extension.toDto
 import com.example.models.ErrorResponse
 import com.example.models.User
 import com.example.service.usersService
@@ -8,22 +9,21 @@ import io.ktor.server.application.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
-import org.litote.kmongo.Id
 import org.litote.kmongo.KMongo
 import org.litote.kmongo.getCollection
 import org.litote.kmongo.newId
+import com.example.extension.toUser
+import com.example.models.UsersDto
 
 fun Route.customersRoutes() {
     val service = usersService()
 
     route("/users") {
         get {
-            val peopleList =
-                service.findAll()
-            println(peopleList)
-            call.respond(peopleList)
+            val usersList = service.findAll()
+                .map(User::toDto)
+            call.respond(usersList)
+
         }
 //        get("/{id?}") {
 //            val id = call.parameters["id"] ?: return@get call.respondText(
