@@ -20,23 +20,20 @@ fun Route.customersRoutes() {
 
     route("/users") {
         get {
-            val usersList = service.findAll()
+            val users = service.findAll()
                 .map(User::toDto)
-            call.respond(usersList)
+            call.respond(users)
 
         }
-//        get("/{id?}") {
-//            val id = call.parameters["id"] ?: return@get call.respondText(
-//                "Missing or malformed id",
-//                status = HttpStatusCode.BadRequest
-//            )
-//            val customer =
-//                customersList.find { it.id.toString() == id } ?: return@get call.respondText(
-//                    "No customer with id $id",
-//                    status = HttpStatusCode.NotFound
-//                )
-//            call.respond(customer)
-//        }
+        get("/{id}") {
+            val id = call.parameters["id"].toString() ?: return@get call.respondText(
+                "Missing or malformed id",
+                status = HttpStatusCode.BadRequest
+            )
+            service.findById(id)
+                ?.let { foundUser -> call.respond(foundUser.toDto()) }
+                ?: call.respond(HttpStatusCode.NotFound, ErrorResponse.NOT_FOUND_RESPONSE)
+        }
         post {
             val customer = call.receive<User>()
             service.create(customer)
@@ -48,18 +45,28 @@ fun Route.customersRoutes() {
             call.respondText("customer added correctly", status = HttpStatusCode.Created)
             call.respondText("create customer")
         }
-//        delete("/{id?}") {
-//            call.respondText("delete customer")
-//            val id = call.parameters["id"] ?: return@delete call.respondText(
-//                "Missing or malformed id",
-//                status = HttpStatusCode.BadRequest
-//            )
-//            if (customersList.removeIf { it.id.toString() == id }) {
-//                call.respondText("customer removed correctly", status = HttpStatusCode.Accepted)
-//            } else {
-//                call.respondText("customer not found", status = HttpStatusCode.NotFound)
-//            }
-//        }
+
+        put("/{id}") {
+            val id = call.parameters["id"].toString()
+            val request = call.receive<UsersDto>()
+            val user = request.toUser()
+            val updated = service.updateUser(id, user)
+
+            if (updated) {
+                call.respondText("customer updated correctly", status = HttpStatusCode.Accepted)
+            } else {
+                call.respond(HttpStatusCode.BadRequest, ErrorResponse.BAD_REQUEST_RESPONSE)
+            }
+        }
+        delete("/{id}") {
+            val id = call.parameters["id"].toString()
+            val deleted = service.deleteUser(id)
+            if (deleted) {
+                call.respondText("customer deleted correctly", status = HttpStatusCode.Accepted)
+            } else {
+                call.respond(HttpStatusCode.BadRequest, ErrorResponse.BAD_REQUEST_RESPONSE)
+            }
+        }
     }
 
 }
