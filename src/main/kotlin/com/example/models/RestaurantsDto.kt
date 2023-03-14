@@ -10,4 +10,5 @@ data class RestaurantsDto(
     val phoneNumber: String,
     val email: String,
     val password: String,
+    val admins: List<Admins>
 )

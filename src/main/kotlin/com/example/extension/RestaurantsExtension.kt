@@ -11,6 +11,7 @@ fun Restaurant.toDto(): RestaurantsDto =
         phoneNumber = this.phoneNumber,
         email = this.email,
         password = this.password,
+        admins = this.admins,
     )
 
 fun RestaurantsDto.toRestaurant(): Restaurant =
@@ -20,4 +21,5 @@ fun RestaurantsDto.toRestaurant(): Restaurant =
         phoneNumber = this.phoneNumber,
         email = this.email,
         password = this.password,
+        admins = this.admins,
     )

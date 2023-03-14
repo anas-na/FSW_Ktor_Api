@@ -13,4 +13,10 @@ data class Restaurant(
     val phoneNumber: String,
     val email: String,
     val password: String,
+    val admins: List<Admins>
+)
+
+@Serializable
+data class Admins(
+    val id: String
 )
