@@ -9,6 +9,8 @@ data class RestaurantsDto(
     val address: String,
     val phoneNumber: String,
     val email: String,
-    val password: String,
-    val admins: List<Admins>
+    val admins: List<Admins>,
+    val lunchMenu: List<LunchMenu>? = null,
+    val dinnerMenu: List<DinnerMenu>? = null,
+    val brunchMenu: List<BrunchMenu>? = null,
 )

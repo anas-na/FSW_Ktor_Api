@@ -32,7 +32,9 @@ class RestaurantsService {
                     address = request.address,
                     phoneNumber = request.phoneNumber,
                     email = request.email,
-                    password = request.password
+                    lunchMenu = request.lunchMenu,
+                    dinnerMenu = request.dinnerMenu,
+                    brunchMenu = request.brunchMenu,
                 )
             )
             updatedRestaurant.modifiedCount == 1L
